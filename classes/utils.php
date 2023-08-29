@@ -17,14 +17,23 @@
 namespace mod_studentquiz;
 
 use core\dml\sql_join;
-use external_value;
-use external_single_structure;
 use mod_studentquiz\commentarea\comment;
 use moodle_url;
 use mod_studentquiz\local\studentquiz_helper;
 use mod_studentquiz\local\studentquiz_question;
 use core_question\local\bank\question_version_status;
 
+defined('MOODLE_INTERNAL') || die();
+
+if (class_exists('core_external\external_api')) {
+    require_once($CFG->dirroot . '/lib/external/classes/external_single_structure.php');
+    require_once($CFG->dirroot . '/lib/external/classes/external_value.php');
+} else {
+    require_once($CFG->libdir . '/externallib.php');
+}
+
+use core_external\external_value;
+use core_external\external_single_structure;
 /**
  * Class that holds utility functions used by mod_studentquiz.
  *

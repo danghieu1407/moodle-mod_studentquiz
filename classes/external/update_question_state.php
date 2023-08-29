@@ -25,17 +25,28 @@
 
 namespace mod_studentquiz\external;
 
-defined('MOODLE_INTERNAL') || die();
-
-use external_api;
-use external_function_parameters;
-use external_single_structure;
-use external_value;
 use mod_studentquiz\local\studentquiz_helper;
 use mod_studentquiz\local\studentquiz_question;
 
+defined('MOODLE_INTERNAL') || die();
+
+// This work-around is required until Moodle 4.2 is the lowest version we support.
+if (class_exists('core_external\external_api')) {
+    require_once($CFG->dirroot . '/lib/external/classes/external_api.php');
+    require_once($CFG->dirroot . '/lib/external/classes/external_function_parameters.php');
+    require_once($CFG->dirroot . '/lib/external/classes/external_single_structure.php');
+    require_once($CFG->dirroot . '/lib/external/classes/external_multiple_structure.php');
+    require_once($CFG->dirroot . '/lib/external/classes/external_value.php');
+} else {
+    require_once($CFG->libdir . '/externallib.php');
+}
+
+use core_external\external_api;
+use core_external\external_function_parameters;
+use core_external\external_single_structure;
+use core_external\external_multiple_structure;
+use core_external\external_value;
 require_once($CFG->dirroot . '/mod/studentquiz/locallib.php');
-require_once($CFG->libdir . '/externallib.php');
 
 /**
  * Create update question state services implementation.

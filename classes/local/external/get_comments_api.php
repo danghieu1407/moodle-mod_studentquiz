@@ -24,18 +24,27 @@
 
 namespace mod_studentquiz\local\external;
 
-defined('MOODLE_INTERNAL') || die();
-
-use external_api;
-use external_function_parameters;
-use external_single_structure;
-use external_multiple_structure;
-use external_value;
 use mod_studentquiz\commentarea\container;
 use mod_studentquiz\utils;
 
+defined('MOODLE_INTERNAL') || die();
+
+if (class_exists('core_external\external_api')) {
+    require_once($CFG->dirroot . '/lib/external/classes/external_api.php');
+    require_once($CFG->dirroot . '/lib/external/classes/external_function_parameters.php');
+    require_once($CFG->dirroot . '/lib/external/classes/external_single_structure.php');
+    require_once($CFG->dirroot . '/lib/external/classes/external_multiple_structure.php');
+    require_once($CFG->dirroot . '/lib/external/classes/external_value.php');
+} else {
+    require_once($CFG->libdir . '/externallib.php');
+}
+use core_external\external_api;
+use core_external\external_function_parameters;
+use core_external\external_single_structure;
+use core_external\external_multiple_structure;
+use core_external\external_value;
+
 require_once($CFG->dirroot . '/mod/studentquiz/locallib.php');
-require_once($CFG->libdir . '/externallib.php');
 
 /**
  * Get comments services implementation.
