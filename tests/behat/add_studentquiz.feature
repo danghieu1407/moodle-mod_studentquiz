@@ -38,7 +38,7 @@ Feature: Activities can be created
 
   @javascript
   Scenario: Check an Activity can not be created with invalid date restriction.
-    Given I add a StudentQuiz to course "Course 1" section "1"
+    Given I add a studentquiz activity to course "Course 1" section "1"
     And I set the following fields to these values:
       | StudentQuiz Name | Test SQ name        |
       | Description      | Test SQ description |

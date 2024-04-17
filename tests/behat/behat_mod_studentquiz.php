@@ -279,27 +279,4 @@ class behat_mod_studentquiz extends behat_base {
             );
         }
     }
-
-    /**
-     * Add specific studentquiz to a course section.
-     *
-     * @Given I add a StudentQuiz to course :coursefullname section :sectionnum
-     * @param string $coursefullname The course full name of the course.
-     * @param int $section The section number.
-     */
-    public function add_studentquiz_to_course_section($coursefullname, $section) {
-        if (method_exists('behat_course', 'i_add_to_course_section')) {
-            $this->execute('behat_course::i_add_to_course_section', [
-                'studentquiz',
-                $coursefullname,
-                $section,
-            ]);
-        } else {
-            // This step works only for Moodle 4.3 and earlier versions.
-            $this->execute('behat_course::i_add_to_section', [
-                'StudentQuiz',
-                $section,
-            ]);
-        }
-    }
 }
