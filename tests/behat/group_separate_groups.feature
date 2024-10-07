@@ -137,7 +137,7 @@ Feature: Students can create questions and practice in separate groups.
     Then I should see "Sorry, but you need to be part of a group to see this page."
     And "Back to course" "button" should exist
 
-  @javascript
+  @javascript @editor_tiny
   Scenario: Teacher without a group but has the capability 'moodle/site:accessallgroups' can write a comment on Student Quiz in separate groups.
     Given I am on the "C1" "Course" page logged in as "admin"
     And I follow "StudentQuiz 1"
@@ -153,7 +153,11 @@ Feature: Students can create questions and practice in separate groups.
     And I click on "Start Quiz" "button"
     And I set the field "True" to "1"
     And I press "Check"
-    And I set the field "Add public comment" to "Comment 1"
+    And I wait "1" seconds
+    And I switch to the "Add public comment" TinyMCE editor iframe
+    And I click on "#tinymce" "css_element"
+    And I type "Comment 1"
+    And I switch to the main frame
     And I press "Add comment"
     And I wait until ".studentquiz-comment-item:nth-child(1)" "css_element" exists
     Then I should see "Comment 1" in the ".studentquiz-comment-item:nth-child(1) .studentquiz-comment-text" "css_element"

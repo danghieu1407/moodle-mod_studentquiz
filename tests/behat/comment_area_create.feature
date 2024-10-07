@@ -38,7 +38,7 @@ Feature: Create comment as an user
       | Default for StudentQuiz 1 | truefalse | Test question to be previewed | Answer the question 1 |
       | Default for StudentQuiz 2 | truefalse | Test question to be previewed | Answer the question 2 |
 
-  @javascript @_switch_window
+  @javascript @_switch_window @editor_tiny
   Scenario: Test show initital view and Expand all comment/ Collapse all comment button. Check both start quiz and preview mode
     When I am on the "StudentQuiz 1" "mod_studentquiz > View" page logged in as "admin"
     And I click on "Start Quiz" "button"
@@ -47,7 +47,11 @@ Feature: Create comment as an user
     # Wait for comment area init.
     And I wait until the page is ready
     # Enter "Comment 1".
-    And I set the field "Add public comment" to "Comment 1"
+    And I wait "1" seconds
+    And I switch to the "Add public comment" TinyMCE editor iframe
+    And I click on "#tinymce" "css_element"
+    And I type "Comment 1"
+    And I switch to the main frame
     And I press "Add comment"
     And I wait until the page is ready
     And I wait until ".studentquiz-comment-item:nth-child(1)" "css_element" exists
@@ -55,35 +59,50 @@ Feature: Create comment as an user
     # Wait for different created time.
     And I wait "1" seconds
     # Enter "Comment 2"
-    And I set the field "Add public comment" to "Comment 2"
+    And I switch to the "Add public comment" TinyMCE editor iframe
+    And I click on "#tinymce" "css_element"
+    And I type "Comment 2"
+    And I switch to the main frame
     And I press "Add comment"
     And I wait until the page is ready
     And I wait until ".studentquiz-comment-item:nth-child(2)" "css_element" exists
     And I should see "Comment 2" in the ".studentquiz-comment-item:nth-child(2) .studentquiz-comment-text" "css_element"
     And I wait "1" seconds
     # Enter "Comment 3"
-    And I set the field "Add public comment" to "Comment 3"
+    And I switch to the "Add public comment" TinyMCE editor iframe
+    And I click on "#tinymce" "css_element"
+    And I type "Comment 3"
+    And I switch to the main frame
     And I press "Add comment"
     And I wait until the page is ready
     And I wait until ".studentquiz-comment-item:nth-child(3)" "css_element" exists
     And I should see "Comment 3" in the ".studentquiz-comment-item:nth-child(3) .studentquiz-comment-text" "css_element"
     And I wait "1" seconds
     # Enter "Comment 4"
-    And I set the field "Add public comment" to "Comment 4"
+    And I switch to the "Add public comment" TinyMCE editor iframe
+    And I click on "#tinymce" "css_element"
+    And I type "Comment 4"
+    And I switch to the main frame
     And I press "Add comment"
     And I wait until the page is ready
     And I wait until ".studentquiz-comment-item:nth-child(4)" "css_element" exists
     And I should see "Comment 4" in the ".studentquiz-comment-item:nth-child(4) .studentquiz-comment-text" "css_element"
     And I wait "1" seconds
     # Enter "Comment 5"
-    And I set the field "Add public comment" to "Comment 5"
+    And I switch to the "Add public comment" TinyMCE editor iframe
+    And I click on "#tinymce" "css_element"
+    And I type "Comment 5"
+    And I switch to the main frame
     And I press "Add comment"
     And I wait until the page is ready
     And I wait until ".studentquiz-comment-item:nth-child(5)" "css_element" exists
     And I should see "Comment 5" in the ".studentquiz-comment-item:nth-child(5) .studentquiz-comment-text" "css_element"
     And I wait "1" seconds
     # Enter "Comment 6"
-    And I set the field "Add public comment" to "Comment 6"
+    And I switch to the "Add public comment" TinyMCE editor iframe
+    And I click on "#tinymce" "css_element"
+    And I type "Comment 6"
+    And I switch to the main frame
     And I press "Add comment"
     And I wait until the page is ready
     And I wait until ".studentquiz-comment-item:nth-child(6)" "css_element" exists
@@ -136,7 +155,7 @@ Feature: Create comment as an user
     And I should see "Comment 4" in the ".studentquiz-comment-item:nth-child(4) .studentquiz-comment-text" "css_element"
     And I should see "Comment 5" in the ".studentquiz-comment-item:nth-child(5) .studentquiz-comment-text" "css_element"
 
-  @javascript
+  @javascript @editor_tiny
   Scenario: Test reply comment.
     When I am on the "StudentQuiz 1" "mod_studentquiz > View" page logged in as "admin"
     And I click on "Start Quiz" "button"
@@ -144,7 +163,11 @@ Feature: Create comment as an user
     And I press "Check"
     # Wait for comment area init.
     And I wait until the page is ready
-    And I set the field "Add public comment" to "Comment 1"
+    And I wait "1" seconds
+    And I switch to the "Add public comment" TinyMCE editor iframe
+    And I click on "#tinymce" "css_element"
+    And I type "Comment 1"
+    And I switch to the main frame
     And I press "Add comment"
     And I wait until the page is ready
     And I wait until ".studentquiz-comment-item:nth-child(1)" "css_element" exists
@@ -170,7 +193,7 @@ Feature: Create comment as an user
     And I press "Collapse all comments"
     Then I should see "Comment 1 with long content: simply dummy text of the printing ..."
 
-  @javascript
+  @javascript @editor_tiny
   Scenario: Test delete comment feature.
     # Save document into course 1.
     When I am on the "StudentQuiz 1" "mod_studentquiz > View" page logged in as "admin"
@@ -179,7 +202,11 @@ Feature: Create comment as an user
     And I press "Check"
     # Wait for comment area init.
     And I wait until the page is ready
-    And I set the field "Add public comment" to "Comment 1"
+    And I wait "1" seconds
+    And I switch to the "Add public comment" TinyMCE editor iframe
+    And I click on "#tinymce" "css_element"
+    And I type "Comment 1"
+    And I switch to the main frame
     And I press "Add comment"
     And I wait until the page is ready
     And I wait until ".studentquiz-comment-item:nth-child(1)" "css_element" exists
@@ -212,7 +239,7 @@ Feature: Create comment as an user
     And I press "Finish"
     Then I should not see "Please comment"
 
-  @javascript
+  @javascript @editor_tiny
   Scenario: Admin delete comment and check if student can view.
     # Save document into course 1.
     When I am on the "StudentQuiz 1" "mod_studentquiz > View" page logged in as "admin"
@@ -221,7 +248,11 @@ Feature: Create comment as an user
     And I press "Check"
     # Wait for comment area init.
     And I wait until the page is ready
-    And I set the field "Add public comment" to "Comment 1"
+    And I wait "1" seconds
+    And I switch to the "Add public comment" TinyMCE editor iframe
+    And I click on "#tinymce" "css_element"
+    And I type "Comment 1"
+    And I switch to the main frame
     And I press "Add comment"
     And I wait until the page is ready
     And I wait until ".studentquiz-comment-item:nth-child(1)" "css_element" exists
@@ -245,14 +276,18 @@ Feature: Create comment as an user
     And I wait until the page is ready
     And I should not see "Comment 1"
 
-  @javascript
+  @javascript @editor_tiny
   Scenario: Test report comment feature.
     When I am on the "StudentQuiz 1" "mod_studentquiz > View" page logged in as "admin"
     And I click on "Start Quiz" "button"
     And I set the field "True" to "1"
     And I press "Check"
     And I wait until the page is ready
-    And I set the field "Add public comment" to "Comment 1"
+    And I wait "1" seconds
+    And I switch to the "Add public comment" TinyMCE editor iframe
+    And I click on "#tinymce" "css_element"
+    And I type "Comment 1"
+    And I switch to the main frame
     And I press "Add comment"
     And I wait until the page is ready
     And I wait until ".studentquiz-comment-item:nth-child(1)" "css_element" exists
@@ -475,7 +510,7 @@ Feature: Create comment as an user
     # Check placeholder is back with correct text.
     And the "data-placeholder" attribute of ".editor_atto_content_wrap" "css_element" should contain "Enter your comment here ..."
 
-  @javascript
+  @javascript @editor_tiny
   Scenario: Test edit comment/reply.
     When I am on the "StudentQuiz 1" "mod_studentquiz > View" page logged in as "student1"
     And I click on "Start Quiz" "button"
@@ -483,7 +518,11 @@ Feature: Create comment as an user
     And I press "Check"
     # Wait for comment area init.
     And I wait until the page is ready
-    And I set the field "Add public comment" to "Comment 1"
+    And I wait "1" seconds
+    And I switch to the "Add public comment" TinyMCE editor iframe
+    And I click on "#tinymce" "css_element"
+    And I type "Comment 1"
+    And I switch to the main frame
     And I press "Add comment"
     And I wait until the page is ready
     And I wait until ".studentquiz-comment-item:nth-child(1)" "css_element" exists
@@ -545,7 +584,7 @@ Feature: Create comment as an user
     And I should not see "Edit" in the ".studentquiz-comment-item:nth-child(1) .studentquiz-comment-commands-box" "css_element"
     And I should not see "Edit" in the ".studentquiz-comment-item:nth-child(1) .studentquiz-comment-replies .studentquiz-comment-item:nth-child(1) .studentquiz-comment-commands-box" "css_element"
 
-  @javascript
+  @javascript @editor_tiny
   Scenario: Test enable/disable edit feature.
     When I am on the "StudentQuiz 1" "mod_studentquiz > View" page logged in as "admin"
     And I navigate to "Settings" in current page administration
@@ -564,7 +603,11 @@ Feature: Create comment as an user
     # Wait for comment area init.
     And I wait until the page is ready
     # Try to comment.
-    And I set the field "Add public comment" to "Comment 1"
+    And I wait "1" seconds
+    And I switch to the "Add public comment" TinyMCE editor iframe
+    And I click on "#tinymce" "css_element"
+    And I type "Comment 1"
+    And I switch to the main frame
     And I press "Add comment"
     And I wait until the page is ready
     And I wait until ".studentquiz-comment-item:nth-child(1)" "css_element" exists
